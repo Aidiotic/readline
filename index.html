@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>readline</title>
+<meta name="description" content="Paste any link and get one an AI can open — the page's contents as plain text, no JavaScript required.">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#F5EAD8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1815" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='3' fill='%23C67139'/></svg>">
+<script src="config.js"></script>
+</head>
+<body>
+
+<!-- data-state drives every motion cue on the page from one place. -->
+<main id="app" data-state="idle">
+
+  <header class="head">
+    <h1 class="wordmark">
+      <span class="mark" aria-hidden="true"><i></i></span><span class="wordmark-text">readline</span>
+    </h1>
+    <p class="statusline" id="statusline"></p>
+  </header>
+
+  <p id="live" class="sr-only" role="status" aria-live="polite"></p>
+
+  <!-- ── Start ──────────────────────────────────────────────── -->
+  <section id="view-start" class="view">
+    <p class="lede-big">Any link, turned into one an AI can actually open.</p>
+
+    <form id="read-form" autocomplete="off">
+      <label class="field-label" for="link-input">Paste a link</label>
+      <div class="field-row">
+        <input type="text" id="link-input" inputmode="url" autocomplete="off" spellcheck="false"
+               placeholder="music.apple.com/us/album/…" aria-label="The link to read">
+        <button type="submit" id="act-read" class="act act-strong">Read</button>
+      </div>
+    </form>
+
+    <p class="hint">An Apple Music album, a paywalled-looking recipe, a feed, a JSON endpoint.
+      readline fetches it, pulls out the title, the facts, the track list and the text, and
+      hands back a link that serves all of it as plain HTML — which is the part a model can read.</p>
+  </section>
+
+  <!-- ── Result ─────────────────────────────────────────────── -->
+  <section id="view-result" class="view" hidden>
+    <article class="card" id="card">
+      <p class="card-kicker" id="card-kicker"></p>
+      <h2 class="card-title" id="card-title"></h2>
+      <p class="card-desc" id="card-desc"></p>
+      <dl class="card-facts" id="card-facts"></dl>
+      <ol class="card-list" id="card-list"></ol>
+      <p class="card-stats" id="card-stats"></p>
+    </article>
+
+    <div class="share">
+      <label class="field-label" for="share-link">Shareable link</label>
+      <input type="text" id="share-link" readonly spellcheck="false" aria-label="The shareable link">
+      <div class="row">
+        <button id="copy-btn" type="button" class="act act-accent">Copy link</button>
+        <button id="share-btn" type="button" class="act" hidden>Share</button>
+        <a id="open-btn" class="act" target="_blank" rel="noopener">Open it</a>
+        <button id="again-btn" type="button" class="act">Another link</button>
+      </div>
+    </div>
+
+    <p class="hint">Paste that into a chat. Nothing is stored — the link carries the original
+      address inside it, so it works for anyone, and it stops working exactly when the original does.</p>
+  </section>
+
+  <!-- ── Error ──────────────────────────────────────────────── -->
+  <section id="view-error" class="view" hidden>
+    <p class="err" id="error-msg"></p>
+    <button class="act act-strong" id="error-reset" type="button">Try another link</button>
+  </section>
+
+  <footer class="foot">
+    <span class="foot-meta" id="foot-meta"></span>
+    <span class="foot-links">
+      <a href="updates.html">Updates</a>
+      <a href="https://github.com/Aidiotic/readline">Source</a>
+    </span>
+  </footer>
+
+</main>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

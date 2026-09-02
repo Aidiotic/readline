@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>readline — updates</title>
+<meta name="description" content="What has changed in readline, and what is next.">
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#F5EAD8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1815" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='3' fill='%23C67139'/></svg>">
+</head>
+<body class="doc">
+<main id="app">
+
+  <header class="head">
+    <h1 class="wordmark">
+      <span class="mark" aria-hidden="true"><i></i></span><span class="wordmark-text">readline</span>
+    </h1>
+    <p class="statusline">Updates</p>
+  </header>
+
+  <section class="panel">
+    <p class="sect">Released</p>
+
+    <div class="rel">
+      <h3>First release <time datetime="2026-09-02">2 Sep 2026</time></h3>
+      <ul>
+        <li><strong>Paste a link, get one that can be read.</strong> The reader
+          fetches the page on a server and returns plain HTML with no
+          JavaScript in it at all, so anything that reads pages — including a
+          model that would otherwise get an empty shell — sees the contents.</li>
+        <li><strong>Structured data is the point.</strong> An Apple Music album
+          page renders entirely in JavaScript, but it ships a schema.org
+          <code>MusicAlbum</code> block with every track name, duration and
+          link. readline reads that, so a shared album link comes back as all
+          twenty-one titles rather than a login prompt. Recipes give
+          ingredients and method, products give price and rating, feeds give
+          their entries, question pages give their answers.</li>
+        <li><strong>Nothing is stored.</strong> The reader link carries the
+          original address inside it, so there is no database, no id to expire,
+          and no link that outlives what it points at. Repeat reads are served
+          from the edge cache for ten minutes.</li>
+        <li><strong>Markdown and JSON as well as HTML.</strong> Add
+          <code>?__format=md</code> or <code>?__format=json</code> to any reader
+          link. Our own options are namespaced with a double underscore so they
+          cannot collide with the target's own query string.</li>
+        <li><strong>The fetcher will not touch a private address.</strong> Every
+          spelling of one — <code>127.0.0.1</code>, <code>2130706433</code>,
+          <code>0x7f000001</code>, <code>[::ffff:7f00:1]</code> — collapses to
+          the same integer and is refused, and every redirect hop is checked
+          again rather than followed blind.</li>
+        <li><strong>A kill switch in <code>config.js</code></strong>, which is
+          neither bundled nor fingerprinted, so the page can be taken out of
+          service from GitHub's web UI without a deploy. Links already shared
+          are served by the worker, so stopping those means stopping it.</li>
+      </ul>
+      <p class="credit">Built because an AI cannot open an Apple Music link,
+        and the album was worth talking about.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="sect">Next</p>
+    <p class="sect-note">Roughly in order. Nothing here is promised.</p>
+
+    <ol class="road">
+      <li>
+        <h3>Sites that need a real browser</h3>
+        <p>A few pages have nothing in their HTML and no structured data
+          either — the text only exists after their JavaScript runs. Rendering
+          those needs a headless browser, which is a much larger thing than
+          this, and would be the first part of readline that costs money.</p>
+      </li>
+      <li>
+        <h3>PDFs</h3>
+        <p>Currently refused with a note saying so. Extracting text from one is
+          self-contained work and probably the most useful thing missing.</p>
+      </li>
+      <li>
+        <h3>A bookmarklet</h3>
+        <p>The page already reads <code>/?u=…</code> on load, so this is a
+          one-line link away — it just needs somewhere to live.</p>
+      </li>
+      <li>
+        <h3>Better answers for hostile sites</h3>
+        <p>X, Instagram and LinkedIn serve almost nothing to a fetcher. Where a
+          public API exists, using it would beat the note that currently
+          explains the emptiness.</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    <span class="foot-meta">readline</span>
+    <span class="foot-links">
+      <a href="./">Back</a>
+      <a href="https://github.com/Aidiotic/readline">Source</a>
+    </span>
+  </footer>
+
+</main>
+</body>
+</html>

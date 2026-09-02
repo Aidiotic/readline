@@ -1,0 +1,11 @@
+name = "readline"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+# Shown on the worker's own landing page so someone who lands on a bare
+# reader link can find the page that makes them.
+[vars]
+SITE_URL = "https://aidiotic.github.io/readline/"
+
+[observability]
+enabled = true

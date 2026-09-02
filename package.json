@@ -1,0 +1,13 @@
+{
+  "name": "readline",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Paste any link and get one an AI can open.",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "serve": "npx --yes serve@14 . -l 4321",
+    "worker": "npm --prefix worker run dev",
+    "deploy:worker": "npm --prefix worker run deploy"
+  }
+}
