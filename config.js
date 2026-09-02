@@ -10,7 +10,7 @@ window.READLINE_CONFIG = {
   // link has to be served by something that renders on the server.
   //
   // After `npm run deploy` in worker/, wrangler prints the URL. Paste it here.
-  worker: 'https://readline.aidiotic.workers.dev',
+  worker: 'https://readline.dropline.workers.dev',
 
   // ── kill switch ──
   // Set to true to stop the page reading anything, with the notice below

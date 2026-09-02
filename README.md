@@ -12,7 +12,7 @@ twenty-one track names with their durations, as plain HTML.
 ```
 https://music.apple.com/us/album/1989-taylors-version/1708308989
                        ↓
-https://readline.<you>.workers.dev/r/https://music.apple.com/us/album/1989-taylors-version/1708308989
+https://readline.dropline.workers.dev/r/https://music.apple.com/us/album/1989-taylors-version/1708308989
 ```
 
 ## How it works
